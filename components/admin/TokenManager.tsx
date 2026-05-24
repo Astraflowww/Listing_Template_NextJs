@@ -160,14 +160,14 @@ export function TokenManager({ users, currentAdminId }: TokenManagerProps) {
       </div>
 
       {/* Users Table */}
-      <div className="rounded-xl border border-border/50 bg-background/50 backdrop-blur-md overflow-hidden shadow-sm">
+      <div className="rounded-lg border border-border bg-card overflow-hidden shadow-none">
         <Table>
           <TableHeader className="bg-muted/40">
             <TableRow>
-              <TableHead className="font-semibold text-muted-foreground py-4">User Details</TableHead>
-              <TableHead className="font-semibold text-muted-foreground py-4">System Role</TableHead>
-              <TableHead className="font-semibold text-muted-foreground py-4">Token Balance</TableHead>
-              <TableHead className="font-semibold text-muted-foreground py-4 text-right">Actions</TableHead>
+              <TableHead className="font-medium text-muted-foreground py-4">User Details</TableHead>
+              <TableHead className="font-medium text-muted-foreground py-4">System Role</TableHead>
+              <TableHead className="font-medium text-muted-foreground py-4">Token Balance</TableHead>
+              <TableHead className="font-medium text-muted-foreground py-4 text-right">Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -182,7 +182,7 @@ export function TokenManager({ users, currentAdminId }: TokenManagerProps) {
                 <TableRow key={user.id} className="hover:bg-muted/10 transition-colors">
                   <TableCell className="py-4">
                     <div className="flex flex-col">
-                      <span className="font-bold text-sm">
+                      <span className="font-semibold text-sm">
                         {user.full_name || 'No Name Provided'}
                       </span>
                       <span className="text-xs text-muted-foreground">
@@ -192,11 +192,11 @@ export function TokenManager({ users, currentAdminId }: TokenManagerProps) {
                   </TableCell>
                   <TableCell className="py-4">
                     <span className={cn(
-                      "inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold capitalize",
+                      "inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold capitalize",
                       user.role === 'admin'
-                        ? "bg-red-500/10 text-red-600 dark:text-red-400 border-red-500/20"
+                        ? "bg-[#ff2067]/10 text-[#cc0044] border-[#ff2067]/20"
                         : user.role === 'seller'
-                        ? "bg-primary/10 text-primary border-primary/20"
+                        ? "bg-fin-orange/10 text-fin-orange border-fin-orange/20"
                         : "bg-muted text-muted-foreground border-border"
                     )}>
                       {user.role}
@@ -233,8 +233,8 @@ export function TokenManager({ users, currentAdminId }: TokenManagerProps) {
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle className="flex items-center gap-2">
-              <Coins className="h-5 w-5 text-primary" />
+            <DialogTitle className="flex items-center gap-2 font-medium">
+              <Coins className="h-5 w-5 text-fin-orange" />
               Adjust Token Balance
             </DialogTitle>
             <DialogDescription>
@@ -243,20 +243,20 @@ export function TokenManager({ users, currentAdminId }: TokenManagerProps) {
           </DialogHeader>
 
           {error && (
-            <div className="rounded-lg bg-destructive/10 border border-destructive/20 p-3 text-xs text-destructive font-semibold">
+            <div className="rounded-md bg-destructive/10 border border-destructive/20 p-3 text-xs text-destructive font-semibold">
               {error}
             </div>
           )}
 
           <form onSubmit={handleAdjustTokens} className="space-y-4">
             <div className="space-y-3">
-              <Label className="text-xs uppercase font-bold text-muted-foreground">Operation Action</Label>
+              <Label className="text-xs uppercase font-semibold text-muted-foreground">Operation Action</Label>
               <div className="grid grid-cols-2 gap-3">
                 <Button
                   type="button"
                   variant={action === 'add' ? 'default' : 'outline'}
                   onClick={() => setAction('add')}
-                  className={cn("cursor-pointer gap-1.5 font-semibold", action === 'add' && "bg-gradient-to-r from-primary to-brand-purple text-white")}
+                  className={cn("cursor-pointer gap-1.5 font-semibold", action === 'add' && "bg-primary text-primary-foreground hover:bg-primary/95")}
                 >
                   <Plus className="h-4 w-4" /> Add Tokens
                 </Button>
@@ -320,9 +320,9 @@ export function TokenManager({ users, currentAdminId }: TokenManagerProps) {
                 type="submit"
                 disabled={loading}
                 className={cn(
-                  "cursor-pointer shadow-md shadow-primary/10",
+                  "cursor-pointer shadow-none",
                   action === 'add' 
-                    ? "bg-gradient-to-r from-primary to-brand-purple hover:opacity-90 text-white" 
+                    ? "bg-primary text-primary-foreground hover:bg-primary/90" 
                     : "bg-destructive hover:bg-destructive/90 text-white"
                 )}
               >

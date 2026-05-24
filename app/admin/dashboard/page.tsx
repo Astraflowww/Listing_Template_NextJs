@@ -58,11 +58,11 @@ export default async function AdminDashboardPage() {
   const rejectedListings = listings.filter(l => l.status === 'rejected').length
 
   return (
-    <div className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8 space-y-8">
+    <div className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8 space-y-8 bg-background">
       {/* Header */}
-      <div className="flex flex-col gap-2 border-b pb-4">
-        <h1 className="text-3xl font-extrabold tracking-tight flex items-center gap-2">
-          <ShieldAlert className="h-8 w-8 text-primary" />
+      <div className="flex flex-col gap-2 border-b pb-4 border-border/40">
+        <h1 className="text-3xl font-medium tracking-tight flex items-center gap-2 lg:tracking-[-0.8px] text-foreground">
+          <ShieldAlert className="h-8 w-8 text-foreground" />
           Admin Overview Portal
         </h1>
         <p className="text-muted-foreground mt-1">
@@ -73,26 +73,26 @@ export default async function AdminDashboardPage() {
       {/* Analytics Cards */}
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {/* Users Summary */}
-        <Card className="border-border/50 bg-background/50 backdrop-blur-md shadow-sm">
+        <Card className="border-border bg-card shadow-none rounded-lg">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-bold text-muted-foreground uppercase tracking-wider">
+            <CardTitle className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
               User Accounts
             </CardTitle>
-            <Users className="h-5 w-5 text-primary" />
+            <Users className="h-5 w-5 text-foreground" />
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="text-4xl font-extrabold">{totalUsers}</div>
-            <div className="grid grid-cols-3 gap-2 text-center text-xs border-t pt-3">
+            <div className="text-4xl font-medium tracking-tight">{totalUsers}</div>
+            <div className="grid grid-cols-3 gap-2 text-center text-xs border-t pt-3 border-border/40">
               <div>
-                <p className="font-bold text-foreground">{totalSellers}</p>
+                <p className="font-semibold text-foreground">{totalSellers}</p>
                 <p className="text-muted-foreground">Sellers</p>
               </div>
               <div>
-                <p className="font-bold text-foreground">{totalBuyers}</p>
+                <p className="font-semibold text-foreground">{totalBuyers}</p>
                 <p className="text-muted-foreground">Buyers</p>
               </div>
               <div>
-                <p className="font-bold text-foreground">{totalAdmins}</p>
+                <p className="font-semibold text-foreground">{totalAdmins}</p>
                 <p className="text-muted-foreground">Admins</p>
               </div>
             </div>
@@ -100,26 +100,26 @@ export default async function AdminDashboardPage() {
         </Card>
 
         {/* Listings Summary */}
-        <Card className="border-border/50 bg-background/50 backdrop-blur-md shadow-sm">
+        <Card className="border-border bg-card shadow-none rounded-lg">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-bold text-muted-foreground uppercase tracking-wider">
+            <CardTitle className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
               System Postings
             </CardTitle>
-            <FileSpreadsheet className="h-5 w-5 text-primary" />
+            <FileSpreadsheet className="h-5 w-5 text-foreground" />
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="text-4xl font-extrabold">{totalListings}</div>
-            <div className="grid grid-cols-3 gap-2 text-center text-xs border-t pt-3">
+            <div className="text-4xl font-medium tracking-tight">{totalListings}</div>
+            <div className="grid grid-cols-3 gap-2 text-center text-xs border-t pt-3 border-border/40">
               <div>
-                <p className="font-bold text-green-600 dark:text-green-400">{approvedListings}</p>
+                <p className="font-semibold text-[#079c37]">{approvedListings}</p>
                 <p className="text-muted-foreground">Approved</p>
               </div>
               <div>
-                <p className="font-bold text-amber-600 dark:text-amber-400">{pendingListings}</p>
+                <p className="font-semibold text-amber-600">{pendingListings}</p>
                 <p className="text-muted-foreground">Pending</p>
               </div>
               <div>
-                <p className="font-bold text-destructive">{rejectedListings}</p>
+                <p className="font-semibold text-destructive">{rejectedListings}</p>
                 <p className="text-muted-foreground">Rejected</p>
               </div>
             </div>
@@ -127,16 +127,16 @@ export default async function AdminDashboardPage() {
         </Card>
 
         {/* Transactions Summary */}
-        <Card className="border-border/50 bg-background/50 backdrop-blur-md shadow-sm flex flex-col justify-between">
+        <Card className="border-border bg-card shadow-none rounded-lg flex flex-col justify-between">
           <div>
             <CardHeader className="flex flex-row items-center justify-between pb-2">
-              <CardTitle className="text-sm font-bold text-muted-foreground uppercase tracking-wider">
+              <CardTitle className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
                 Audited Transactions
               </CardTitle>
-              <Coins className="h-5 w-5 text-primary" />
+              <Coins className="h-5 w-5 text-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-4xl font-extrabold">{txCount || 0}</div>
+              <div className="text-4xl font-medium tracking-tight">{txCount || 0}</div>
               <p className="text-xs text-muted-foreground mt-2">
                 All token exchanges and adjustments are logged for audit safety.
               </p>
@@ -147,9 +147,9 @@ export default async function AdminDashboardPage() {
 
       {/* Control Shortcuts */}
       <div className="grid gap-6 md:grid-cols-2">
-        <Card className="border-border/50 bg-gradient-to-tr from-primary/5 to-transparent shadow-sm">
+        <Card className="border-border bg-card shadow-none rounded-lg">
           <CardHeader>
-            <CardTitle className="text-lg font-bold">Listings Moderation</CardTitle>
+            <CardTitle className="text-lg font-medium tracking-tight">Listings Moderation</CardTitle>
             <CardDescription>
               Review pending listings created by sellers. Approve postings to make them public.
             </CardDescription>
@@ -157,7 +157,7 @@ export default async function AdminDashboardPage() {
           <CardContent className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Clock className="h-5 w-5 text-amber-500" />
-              <span className="text-sm font-bold text-amber-600 dark:text-amber-400">
+              <span className="text-sm font-semibold text-amber-600">
                 {pendingListings} listings require review
               </span>
             </div>
@@ -170,9 +170,9 @@ export default async function AdminDashboardPage() {
           </CardContent>
         </Card>
 
-        <Card className="border-border/50 bg-gradient-to-tr from-brand-purple/5 to-transparent shadow-sm">
+        <Card className="border-border bg-card shadow-none rounded-lg">
           <CardHeader>
-            <CardTitle className="text-lg font-bold">Token Manager</CardTitle>
+            <CardTitle className="text-lg font-medium tracking-tight">Token Manager</CardTitle>
             <CardDescription>
               Grant or deduct listing credits for sellers. Oversee user accounts and balances.
             </CardDescription>

@@ -110,12 +110,12 @@ export function BuyerResponseForm({ listingId, fields }: BuyerResponseFormProps)
 
   if (submitted) {
     return (
-      <Card className="border-green-500/20 bg-green-500/5 text-center p-8 animate-in zoom-in-95 duration-300">
+      <Card className="border-border bg-card text-center p-8 rounded-lg shadow-none animate-in zoom-in-95 duration-200">
         <CardContent className="flex flex-col items-center justify-center space-y-4 pt-6">
-          <div className="rounded-full bg-green-500/10 p-3 text-green-600 dark:text-green-400">
+          <div className="rounded-md bg-green-500/10 p-3 text-green-600">
             <CheckCircle2 className="h-10 w-10" />
           </div>
-          <h3 className="text-xl font-bold text-green-600 dark:text-green-400">Application Submitted!</h3>
+          <h3 className="text-xl font-medium tracking-tight text-green-600">Application Submitted!</h3>
           <p className="text-sm text-muted-foreground max-w-sm">
             Thank you for applying. Your details have been submitted to the seller and are awaiting review.
           </p>
@@ -127,7 +127,7 @@ export function BuyerResponseForm({ listingId, fields }: BuyerResponseFormProps)
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       {globalError && (
-        <div className="rounded-lg bg-destructive/10 border border-destructive/20 p-3.5 text-sm text-destructive flex items-center gap-2 animate-in fade-in duration-200">
+        <div className="rounded-md bg-destructive/10 border border-destructive/20 p-3.5 text-sm text-destructive flex items-center gap-2 animate-in fade-in duration-200">
           <AlertCircle className="h-4 w-4 shrink-0" />
           <span>{globalError}</span>
         </div>
@@ -208,7 +208,7 @@ export function BuyerResponseForm({ listingId, fields }: BuyerResponseFormProps)
       <Button
         type="submit"
         disabled={loading}
-        className="w-full bg-gradient-to-r from-primary to-brand-purple hover:opacity-90 text-white cursor-pointer shadow-md shadow-primary/10 gap-2 mt-4"
+        className="w-full bg-primary text-primary-foreground hover:bg-primary/90 cursor-pointer shadow-none gap-2 mt-4"
       >
         {loading ? (
           <>

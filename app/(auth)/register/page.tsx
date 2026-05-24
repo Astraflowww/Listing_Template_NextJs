@@ -58,24 +58,20 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="relative flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
-      {/* Background Decorative Blur */}
-      <div className="absolute top-1/4 left-1/4 h-72 w-72 rounded-full bg-primary/10 blur-3xl" />
-      <div className="absolute bottom-1/4 right-1/4 h-72 w-72 rounded-full bg-brand-purple/10 blur-3xl" />
-
-      <Card className="z-10 w-full max-w-md border-border/50 bg-background/60 backdrop-blur-xl shadow-xl shadow-primary/5">
+    <div className="relative flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center px-4 py-12 sm:px-6 lg:px-8 bg-background">
+      <Card className="z-10 w-full max-w-md border-border bg-card shadow-none">
         <CardHeader className="space-y-1 text-center">
-          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-tr from-primary to-brand-purple text-white shadow-lg shadow-primary/20">
+          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-md bg-foreground text-background">
             <Sparkles className="h-6 w-6" />
           </div>
-          <CardTitle className="text-2xl font-bold tracking-tight">Create your account</CardTitle>
+          <CardTitle className="text-2xl font-medium tracking-tight">Create your account</CardTitle>
           <CardDescription>
             Enter your details to create an account
           </CardDescription>
         </CardHeader>
         {success ? (
           <CardContent className="space-y-4 py-8 text-center">
-            <div className="rounded-lg bg-green-500/10 border border-green-500/20 p-4 text-sm text-green-600 dark:text-green-400 font-semibold animate-bounce">
+            <div className="rounded-md bg-green-500/10 border border-green-500/20 p-4 text-sm text-green-600 font-semibold animate-bounce">
               Registration successful!
             </div>
             <p className="text-muted-foreground text-sm">
@@ -86,7 +82,7 @@ export default function RegisterPage() {
           <form onSubmit={handleRegister}>
             <CardContent className="space-y-4">
               {error && (
-                <div className="rounded-lg bg-destructive/10 border border-destructive/20 p-3 text-sm text-destructive font-medium animate-in fade-in slide-in-from-top-2 duration-200">
+                <div className="rounded-md bg-destructive/10 border border-destructive/20 p-3 text-sm text-destructive font-medium animate-in fade-in slide-in-from-top-2 duration-200">
                   {error}
                 </div>
               )}
@@ -150,7 +146,7 @@ export default function RegisterPage() {
               <Button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-gradient-to-r from-primary to-brand-purple hover:opacity-90 text-white shadow-lg shadow-primary/10 cursor-pointer"
+                className="w-full bg-primary text-primary-foreground hover:bg-primary/90 cursor-pointer shadow-none"
               >
                 {loading ? (
                   <>

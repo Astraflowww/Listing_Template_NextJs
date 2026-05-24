@@ -51,11 +51,11 @@ export function Navbar({ profile }: NavbarProps) {
           {/* Logo Section */}
           <div className="flex items-center gap-8">
             <Link href="/" className="flex items-center gap-2 group">
-              <div className="rounded-xl bg-gradient-to-tr from-primary to-brand-purple p-2 text-white shadow-md shadow-primary/20 group-hover:scale-105 transition-transform duration-300">
+              <div className="rounded-md bg-foreground p-2 text-background transition-transform duration-200">
                 <Sparkles className="h-5 w-5" />
               </div>
-              <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-brand-purple tracking-tight">
-                Astraflow
+              <span className="text-xl font-bold text-foreground tracking-tight">
+                AstraFloww
               </span>
             </Link>
 
@@ -153,7 +153,7 @@ export function Navbar({ profile }: NavbarProps) {
                 <Link href="/register">
                   <Button
                     size="sm"
-                    className="bg-gradient-to-r from-primary to-brand-purple hover:opacity-90 text-white cursor-pointer shadow-md shadow-primary/10"
+                    className="bg-primary text-primary-foreground hover:bg-primary/90 cursor-pointer"
                   >
                     Sign Up
                   </Button>
@@ -262,7 +262,7 @@ export function Navbar({ profile }: NavbarProps) {
                     </Button>
                   </Link>
                   <Link href="/register" onClick={() => setIsOpen(false)}>
-                    <Button className="w-full bg-gradient-to-r from-primary to-brand-purple text-white">
+                    <Button className="w-full bg-primary text-primary-foreground">
                       Sign Up
                     </Button>
                   </Link>

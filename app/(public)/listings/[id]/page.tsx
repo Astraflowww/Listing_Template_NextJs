@@ -75,6 +75,16 @@ export default async function ListingDetailPage({ params }: PageProps) {
   const sellerProfile = listing.profiles as any
   const fields = listing.form_schema as any[]
 
+  // Category-specific badge styles using the report palette from DESIGN.md
+  const categoryStyles: Record<string, string> = {
+    driver: 'bg-[#65b5ff]/10 text-[#006bd6] border-[#65b5ff]/20', // report-blue
+    event: 'bg-[#0bdf50]/10 text-[#079c37] border-[#0bdf50]/20', // report-green
+    service: 'bg-fin-orange/10 text-fin-orange border-fin-orange/20', // fin-orange
+    real_estate: 'bg-[#03b2cb]/10 text-[#028194] border-[#03b2cb]/20', // report-cyan
+    other: 'bg-[#ff2067]/10 text-[#cc0044] border-[#ff2067]/20', // report-pink
+  }
+  const badgeStyle = categoryStyles[listing.category] || categoryStyles.other
+
   return (
     <div className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8 space-y-8">
       {/* Back button */}
@@ -90,8 +100,8 @@ export default async function ListingDetailPage({ params }: PageProps) {
         <div className="lg:col-span-7 space-y-6">
           <div className="space-y-4">
             <div className="flex items-center gap-2">
-              <span className="inline-flex items-center rounded-full bg-primary/10 border border-primary/20 px-2.5 py-0.5 text-xs font-semibold text-primary capitalize">
-                {listing.category}
+              <span className={`inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold capitalize ${badgeStyle}`}>
+                {listing.category.replace('_', ' ')}
               </span>
               <span className="inline-flex items-center gap-1 text-xs text-muted-foreground">
                 <Calendar className="h-3.5 w-3.5" />
@@ -99,33 +109,33 @@ export default async function ListingDetailPage({ params }: PageProps) {
               </span>
             </div>
             
-            <h1 className="text-3xl font-extrabold tracking-tight sm:text-4xl text-foreground">
+            <h1 className="text-3xl font-medium tracking-tight sm:text-4xl text-foreground lg:tracking-[-0.8px]">
               {listing.title}
             </h1>
 
             {listing.status === 'pending' && (
-              <div className="inline-flex items-center rounded-full bg-amber-500/10 border border-amber-500/20 px-3 py-1 text-xs font-bold text-amber-600 dark:text-amber-400">
+              <div className="inline-flex items-center rounded-md bg-amber-500/10 border border-amber-500/20 px-3 py-1 text-xs font-bold text-amber-600">
                 ⚠️ Pending Moderation Approval
               </div>
             )}
           </div>
 
           <div className="border-t border-border/40 pt-6">
-            <h3 className="text-lg font-bold mb-4 text-primary">Job Description / Overview</h3>
-            <div className="prose dark:prose-invert max-w-none text-muted-foreground whitespace-pre-wrap leading-relaxed text-sm md:text-base">
+            <h3 className="text-lg font-medium mb-4 text-foreground tracking-tight">Job Description / Overview</h3>
+            <div className="prose max-w-none text-muted-foreground whitespace-pre-wrap leading-relaxed text-sm md:text-base">
               {listing.description || 'No description provided.'}
             </div>
           </div>
 
           {/* Seller profile card */}
           <div className="border-t border-border/40 pt-6">
-            <Card className="border-border/50 bg-secondary/20 shadow-none">
+            <Card className="border-border bg-card shadow-none">
               <CardContent className="flex items-center gap-4 p-5">
-                <div className="rounded-full bg-primary/15 p-3 text-primary shrink-0">
+                <div className="rounded-md bg-muted p-3 text-foreground shrink-0 border border-border">
                   <User className="h-5 w-5" />
                 </div>
                 <div className="space-y-0.5">
-                  <p className="text-xs text-muted-foreground uppercase font-bold tracking-wider">Posted By</p>
+                  <p className="text-[10px] text-muted-foreground uppercase font-semibold tracking-wider">Posted By</p>
                   <p className="font-semibold text-foreground text-base">
                     {sellerProfile?.full_name || 'Anonymous Seller'}
                   </p>
@@ -140,10 +150,10 @@ export default async function ListingDetailPage({ params }: PageProps) {
 
         {/* Right Side: Dynamic Form Submission Card */}
         <div className="lg:col-span-5">
-          <Card className="border-border/50 bg-background/50 backdrop-blur-md shadow-lg sticky top-24">
-            <CardHeader className="bg-gradient-to-r from-primary/5 to-brand-purple/5 border-b pb-4">
-              <CardTitle className="text-lg font-bold flex items-center gap-2">
-                <Sparkles className="h-4.5 w-4.5 text-primary" />
+          <Card className="border-border bg-card shadow-none rounded-lg sticky top-24">
+            <CardHeader className="bg-muted/30 border-b pb-4">
+              <CardTitle className="text-lg font-medium tracking-tight text-foreground flex items-center gap-2">
+                <Sparkles className="h-4.5 w-4.5 text-fin-orange" />
                 Apply for this role
               </CardTitle>
               <CardDescription>

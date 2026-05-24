@@ -63,12 +63,12 @@ function LoginForm() {
   }
 
   return (
-    <Card className="z-10 w-full max-w-md border-border/50 bg-background/60 backdrop-blur-xl shadow-xl shadow-primary/5">
+    <Card className="z-10 w-full max-w-md border-border bg-card shadow-none">
       <CardHeader className="space-y-1 text-center">
-        <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-tr from-primary to-brand-purple text-white shadow-lg shadow-primary/20">
+        <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-md bg-foreground text-background">
           <Sparkles className="h-6 w-6" />
         </div>
-        <CardTitle className="text-2xl font-bold tracking-tight">Welcome back</CardTitle>
+        <CardTitle className="text-2xl font-medium tracking-tight">Welcome back</CardTitle>
         <CardDescription>
           Enter your credentials to access your account
         </CardDescription>
@@ -76,7 +76,7 @@ function LoginForm() {
       <form onSubmit={handleLogin}>
         <CardContent className="space-y-4">
           {error && (
-            <div className="rounded-lg bg-destructive/10 border border-destructive/20 p-3 text-sm text-destructive font-medium animate-in fade-in slide-in-from-top-2 duration-200">
+            <div className="rounded-md bg-destructive/10 border border-destructive/20 p-3 text-sm text-destructive font-medium animate-in fade-in slide-in-from-top-2 duration-200">
               {error}
             </div>
           )}
@@ -111,7 +111,7 @@ function LoginForm() {
           <Button
             type="submit"
             disabled={loading}
-            className="w-full bg-gradient-to-r from-primary to-brand-purple hover:opacity-90 text-white shadow-lg shadow-primary/10 cursor-pointer"
+            className="w-full bg-primary text-primary-foreground hover:bg-primary/90 cursor-pointer shadow-none"
           >
             {loading ? (
               <>
@@ -139,13 +139,9 @@ function LoginForm() {
 
 export default function LoginPage() {
   return (
-    <div className="relative flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
-      {/* Background Decorative Blur */}
-      <div className="absolute top-1/4 left-1/4 h-72 w-72 rounded-full bg-primary/10 blur-3xl" />
-      <div className="absolute bottom-1/4 right-1/4 h-72 w-72 rounded-full bg-brand-purple/10 blur-3xl" />
-
+    <div className="relative flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center px-4 py-12 sm:px-6 lg:px-8 bg-background">
       <Suspense fallback={
-        <Card className="z-10 w-full max-w-md border-border/50 bg-background/60 backdrop-blur-xl p-8 flex flex-col items-center justify-center min-h-[400px]">
+        <Card className="z-10 w-full max-w-md border-border bg-card p-8 flex flex-col items-center justify-center min-h-[400px]">
           <Loader2 className="h-8 w-8 animate-spin text-primary" />
           <p className="text-sm text-muted-foreground mt-4">Loading secure portal...</p>
         </Card>

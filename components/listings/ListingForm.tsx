@@ -141,10 +141,10 @@ export function ListingForm({ initialTokens, userId }: ListingFormProps) {
         )}
 
         {/* 1. Basic Info */}
-        <Card className="border-border/50 bg-background/50 backdrop-blur-md shadow-sm">
+        <Card className="border-border bg-card shadow-none rounded-lg">
           <CardHeader>
-            <CardTitle className="text-lg font-bold flex items-center gap-2">
-              <Settings className="h-5 w-5 text-primary" />
+            <CardTitle className="text-lg font-medium tracking-tight flex items-center gap-2 text-foreground">
+              <Settings className="h-5 w-5 text-foreground" />
               Listing Details
             </CardTitle>
             <CardDescription>Configure the basic information for your posting.</CardDescription>
@@ -158,7 +158,7 @@ export function ListingForm({ initialTokens, userId }: ListingFormProps) {
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 required
-                className="bg-background/85"
+                className="bg-background"
               />
             </div>
             
@@ -166,7 +166,7 @@ export function ListingForm({ initialTokens, userId }: ListingFormProps) {
               <div className="space-y-1.5">
                 <Label htmlFor="category">Category</Label>
                 <Select value={category} onValueChange={(val) => { if (val) setCategory(val) }}>
-                  <SelectTrigger className="bg-background/85 cursor-pointer">
+                  <SelectTrigger className="bg-background cursor-pointer">
                     <SelectValue placeholder="Select category" />
                   </SelectTrigger>
                   <SelectContent>
@@ -180,11 +180,11 @@ export function ListingForm({ initialTokens, userId }: ListingFormProps) {
               </div>
 
               <div className="space-y-1.5 flex flex-col justify-end">
-                <div className="rounded-lg border border-border bg-muted/30 p-2.5 flex items-center justify-between text-sm">
-                  <span className="text-muted-foreground flex items-center gap-1.5">
-                    <Coins className="h-4 w-4" /> Cost to post:
+                <div className="rounded-md border border-border bg-muted/30 p-2.5 flex items-center justify-between text-sm">
+                  <span className="text-muted-foreground flex items-center gap-1.5 font-semibold">
+                    <Coins className="h-4 w-4 text-fin-orange" /> Cost to post:
                   </span>
-                  <span className="font-bold text-primary">1 Token</span>
+                  <span className="font-semibold text-foreground">1 Token</span>
                 </div>
               </div>
             </div>
@@ -197,17 +197,17 @@ export function ListingForm({ initialTokens, userId }: ListingFormProps) {
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 rows={4}
-                className="bg-background/85"
+                className="bg-background"
               />
             </div>
           </CardContent>
         </Card>
 
         {/* 2. Form Fields Builder */}
-        <Card className="border-border/50 bg-background/50 backdrop-blur-md shadow-sm">
+        <Card className="border-border bg-card shadow-none rounded-lg">
           <CardHeader>
-            <CardTitle className="text-lg font-bold flex items-center gap-2">
-              <Plus className="h-5 w-5 text-primary" />
+            <CardTitle className="text-lg font-medium tracking-tight flex items-center gap-2 text-foreground">
+              <Plus className="h-5 w-5 text-foreground" />
               Dynamic Response Form Builder
             </CardTitle>
             <CardDescription>Design the questions buyers will answer when applying.</CardDescription>
@@ -217,7 +217,7 @@ export function ListingForm({ initialTokens, userId }: ListingFormProps) {
             <div className="space-y-3">
               <Label className="text-sm font-semibold">Configured Form Fields</Label>
               {fields.length === 0 ? (
-                <div className="text-center py-6 text-sm border-dashed border rounded-lg text-muted-foreground bg-muted/10">
+                <div className="text-center py-6 text-sm border-dashed border border-border/70 rounded-md text-muted-foreground bg-muted/10">
                   No response fields defined. Add questions below.
                 </div>
               ) : (
@@ -225,16 +225,16 @@ export function ListingForm({ initialTokens, userId }: ListingFormProps) {
                   {fields.map((field, idx) => (
                     <div 
                       key={field.id} 
-                      className="flex items-center justify-between p-3 border rounded-lg bg-background/70 shadow-sm text-sm group"
+                      className="flex items-center justify-between p-3 border border-border rounded-md bg-card text-sm group"
                     >
                       <div className="space-y-0.5">
-                        <p className="font-medium flex items-center gap-1.5">
+                        <p className="font-semibold flex items-center gap-1.5">
                           {field.label}
                           {field.required && (
                             <span className="text-destructive font-bold text-xs">*</span>
                           )}
                         </p>
-                        <p className="text-[10px] text-muted-foreground capitalize">
+                        <p className="text-[10px] text-muted-foreground capitalize font-semibold">
                           Type: {field.type} 
                           {field.options && field.options.length > 0 && ` (${field.options.join(', ')})`}
                         </p>
@@ -255,8 +255,8 @@ export function ListingForm({ initialTokens, userId }: ListingFormProps) {
             </div>
 
             {/* Field Creator Tool */}
-            <div className="rounded-xl border bg-muted/20 p-4 space-y-4">
-              <h4 className="text-sm font-bold text-primary">Add Question Field</h4>
+            <div className="rounded-md border border-border bg-muted/20 p-4 space-y-4">
+              <h4 className="text-sm font-semibold text-foreground">Add Question Field</h4>
               
               <div className="grid gap-4 sm:grid-cols-2">
                 <div className="space-y-1.5">
@@ -304,7 +304,7 @@ export function ListingForm({ initialTokens, userId }: ListingFormProps) {
               )}
 
               <div className="flex items-center justify-between pt-2">
-                <label className="flex items-center gap-2 text-sm font-medium cursor-pointer">
+                <label className="flex items-center gap-2 text-sm font-semibold cursor-pointer text-muted-foreground hover:text-foreground">
                   <input
                     type="checkbox"
                     checked={newFieldRequired}
@@ -319,7 +319,7 @@ export function ListingForm({ initialTokens, userId }: ListingFormProps) {
                   onClick={handleAddField}
                   variant="outline"
                   size="sm"
-                  className="cursor-pointer gap-1.5"
+                  className="cursor-pointer gap-1.5 border-border"
                 >
                   <Plus className="h-4 w-4" />
                   Add Question
@@ -332,14 +332,14 @@ export function ListingForm({ initialTokens, userId }: ListingFormProps) {
         {/* Submit Actions */}
         <div className="flex items-center justify-end gap-3">
           <Link href="/seller/dashboard">
-            <Button type="button" variant="outline" className="cursor-pointer">
+            <Button type="button" variant="outline" className="cursor-pointer border-border">
               Cancel
             </Button>
           </Link>
           <Button
             type="submit"
             disabled={loading || initialTokens < 1}
-            className="bg-gradient-to-r from-primary to-brand-purple hover:opacity-90 text-white cursor-pointer shadow-md shadow-primary/10 gap-2"
+            className="bg-primary text-primary-foreground hover:bg-primary/90 cursor-pointer shadow-none gap-2"
           >
             {loading ? (
               <>
@@ -358,17 +358,17 @@ export function ListingForm({ initialTokens, userId }: ListingFormProps) {
 
       {/* Real-time Dynamic Preview Panel */}
       <div className="lg:col-span-5 space-y-4">
-        <h2 className="text-xl font-bold flex items-center gap-2">
-          <Eye className="h-5 w-5 text-primary" />
+        <h2 className="text-xl font-medium tracking-tight flex items-center gap-2 text-foreground">
+          <Eye className="h-5 w-5 text-foreground" />
           Buyer View Live Preview
         </h2>
         
-        <Card className="border-border/50 bg-background/40 backdrop-blur-md shadow-sm overflow-hidden sticky top-24">
-          <div className="bg-gradient-to-r from-primary/10 to-brand-purple/10 p-5 border-b">
-            <span className="text-[10px] uppercase font-bold text-primary tracking-wider px-2 py-0.5 rounded bg-primary/15">
+        <Card className="border-border bg-card shadow-none rounded-lg overflow-hidden sticky top-24">
+          <div className="bg-muted/30 p-5 border-b border-border/40">
+            <span className="text-[10px] uppercase font-semibold text-foreground tracking-wider px-2 py-0.5 rounded bg-muted border border-border/30">
               {category}
             </span>
-            <h3 className="text-xl font-bold mt-2 truncate">
+            <h3 className="text-xl font-semibold mt-2 truncate text-foreground">
               {title || 'Untitled Listing Preview'}
             </h3>
             <p className="text-sm text-muted-foreground mt-1 line-clamp-3">
@@ -377,15 +377,15 @@ export function ListingForm({ initialTokens, userId }: ListingFormProps) {
           </div>
           
           <CardContent className="p-6 space-y-4">
-            <h4 className="font-bold text-sm text-primary uppercase tracking-wider mb-2 border-b pb-1">
+            <h4 className="font-semibold text-sm text-foreground uppercase tracking-wider mb-2 border-b border-border/40 pb-1">
               Apply Form (Buyer response)
             </h4>
 
             {fields.map((field) => (
               <div key={field.id} className="space-y-1.5">
-                <Label className="flex items-center gap-1">
+                <Label className="flex items-center gap-1 font-semibold text-sm">
                   {field.label}
-                  {field.required && <span className="text-destructive">*</span>}
+                  {field.required && <span className="text-destructive font-bold">*</span>}
                 </Label>
 
                 {field.type === 'text' && (

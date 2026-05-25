@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "AstraFloww — Dynamic Listing Portal",
+  title: "Drivers Australia — Dynamic Listing Portal",
   description: "A premium form-based listing portal MVP connecting buyers and sellers.",
 };
 
@@ -71,7 +71,7 @@ export default async function RootLayout({
         <Navbar profile={profile as any} />
         <main className="flex-grow flex flex-col">{children}</main>
         <footer className="border-t border-border/40 py-6 text-center text-xs text-muted-foreground bg-background/50 backdrop-blur-md">
-          © {new Date().getFullYear()} AstraFloww Listing Portal. All rights reserved.
+          © {new Date().getFullYear()} Drivers Australia. All rights reserved.
         </footer>
       </body>
     </html>

@@ -50,13 +50,22 @@ export function Navbar({ profile }: NavbarProps) {
         <div className="flex h-16 items-center justify-between">
           {/* Logo Section */}
           <div className="flex items-center gap-8">
-            <Link href="/" className="flex items-center gap-2 group">
-              <div className="rounded-md bg-foreground p-2 text-background transition-transform duration-200">
-                <Sparkles className="h-5 w-5" />
+            <Link href="/" className="flex items-center gap-2.5 group select-none">
+              <div className="transition-transform duration-200 group-hover:scale-[1.02] shrink-0">
+                <svg viewBox="0 0 100 100" className="h-9 w-9" fillRule="evenodd">
+                  <rect width="100" height="100" rx="16" fill="#f0a500" />
+                  <path d="M30 18h15c20 0 35 12 35 32s-15 32-35 32H30c-4.4 0-8-3.6-8-8V26c0-4.4 3.6-8 8-8zm13 14H35v36h8c11 0 19-7 19-18s-8-18-19-18z" fill="#ffffff" />
+                </svg>
               </div>
-              <span className="text-xl font-bold text-foreground tracking-tight">
-                AstraFloww
-              </span>
+              <div className="flex items-center">
+                <div className="flex flex-col leading-none">
+                  <span className="text-[19px] font-bold tracking-[0.03em] text-[#f0a500] leading-[1.05]">DRIVERS</span>
+                  <span className="text-[16px] font-black tracking-normal text-foreground leading-[1.05] mt-0.5">AUSTRALIA</span>
+                </div>
+                <div className="text-[8px] font-medium text-foreground/80 self-stretch flex items-end pl-0.5 pb-[2px] select-none" style={{ writingMode: 'vertical-lr', transform: 'rotate(180deg)' }}>
+                  .com.au
+                </div>
+              </div>
             </Link>
 
             {/* Desktop Navigation Links */}

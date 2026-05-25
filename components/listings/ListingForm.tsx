@@ -10,6 +10,7 @@ import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { cn } from '@/lib/utils'
 
 interface DynamicField {
   id: string
@@ -28,6 +29,7 @@ export function ListingForm({ initialTokens, userId }: ListingFormProps) {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [activeTab, setActiveTab] = useState<'edit' | 'preview'>('edit')
 
   // Basic Details
   const [title, setTitle] = useState('')
@@ -131,9 +133,38 @@ export function ListingForm({ initialTokens, userId }: ListingFormProps) {
   }
 
   return (
-    <div className="grid gap-8 lg:grid-cols-12">
-      {/* Configuration Form */}
-      <form onSubmit={handleSubmit} className="lg:col-span-7 space-y-6">
+    <div className="space-y-4">
+      {/* Mobile/Tablet Tab Selector */}
+      <div className="flex lg:hidden border border-border/40 bg-muted/20 rounded-lg p-1 gap-1 max-w-sm mx-auto">
+        <button
+          type="button"
+          onClick={() => setActiveTab('edit')}
+          className={cn(
+            "flex-1 py-1.5 text-xs font-semibold rounded-md transition-all duration-200 cursor-pointer text-center",
+            activeTab === 'edit'
+              ? "bg-foreground text-background shadow-sm"
+              : "text-muted-foreground hover:text-foreground"
+          )}
+        >
+          Edit Form
+        </button>
+        <button
+          type="button"
+          onClick={() => setActiveTab('preview')}
+          className={cn(
+            "flex-1 py-1.5 text-xs font-semibold rounded-md transition-all duration-200 cursor-pointer text-center",
+            activeTab === 'preview'
+              ? "bg-foreground text-background shadow-sm"
+              : "text-muted-foreground hover:text-foreground"
+          )}
+        >
+          Live Preview
+        </button>
+      </div>
+
+      <div className="grid gap-8 lg:grid-cols-12">
+        {/* Configuration Form */}
+        <form onSubmit={handleSubmit} className={cn("lg:col-span-7 space-y-6", activeTab !== 'edit' && "hidden lg:block")}>
         {error && (
           <div className="rounded-lg bg-destructive/10 border border-destructive/20 p-3.5 text-sm text-destructive font-medium animate-in fade-in duration-200">
             {error}
@@ -357,7 +388,7 @@ export function ListingForm({ initialTokens, userId }: ListingFormProps) {
       </form>
 
       {/* Real-time Dynamic Preview Panel */}
-      <div className="lg:col-span-5 space-y-4">
+      <div className={cn("lg:col-span-5 space-y-4", activeTab !== 'preview' && "hidden lg:block")}>
         <h2 className="text-xl font-medium tracking-tight flex items-center gap-2 text-foreground">
           <Eye className="h-5 w-5 text-foreground" />
           Buyer View Live Preview
@@ -413,6 +444,7 @@ export function ListingForm({ initialTokens, userId }: ListingFormProps) {
           </CardContent>
         </Card>
       </div>
+    </div>
     </div>
   )
 }

@@ -99,7 +99,7 @@ export default function BrowseClientPage({ initialListings }: BrowseClientPagePr
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-8 lg:grid-cols-12">
           {/* Categories Sidebar Filter */}
-          <div className="lg:col-span-3 space-y-6">
+          <div className="lg:col-span-3 space-y-6 min-w-0">
             <div className="flex items-center gap-2 border-b pb-3 border-border/40">
               <SlidersHorizontal className="h-4.5 w-4.5 text-foreground" />
               <h2 className="font-medium text-sm uppercase tracking-wider text-foreground">
@@ -107,7 +107,7 @@ export default function BrowseClientPage({ initialListings }: BrowseClientPagePr
               </h2>
             </div>
 
-            <div className="flex flex-row overflow-x-auto gap-2 lg:flex-col pb-3 lg:pb-0 scrollbar-none">
+            <div className="flex flex-row flex-nowrap overflow-x-auto gap-2 lg:flex-col pb-3 lg:pb-0 scrollbar-none w-full">
               {CATEGORIES.map((cat) => {
                 const Icon = cat.icon
                 const count = categoryCounts[cat.id] || 0
@@ -118,7 +118,7 @@ export default function BrowseClientPage({ initialListings }: BrowseClientPagePr
                     key={cat.id}
                     onClick={() => setSelectedCategory(cat.id)}
                     className={cn(
-                      "flex items-center justify-between gap-3 px-4 py-3 rounded-md border text-sm font-semibold whitespace-nowrap transition-all duration-200 cursor-pointer w-full group text-left",
+                      "flex items-center justify-between gap-3 px-4 py-3 rounded-md border text-sm font-semibold whitespace-nowrap transition-all duration-200 cursor-pointer w-auto lg:w-full group text-left",
                       isSelected
                         ? "bg-foreground border-foreground text-background"
                         : "bg-card border-border hover:border-foreground/30 text-muted-foreground hover:text-foreground"

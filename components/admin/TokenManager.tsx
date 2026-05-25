@@ -159,8 +159,8 @@ export function TokenManager({ users, currentAdminId }: TokenManagerProps) {
         </div>
       </div>
 
-      {/* Users Table */}
-      <div className="rounded-lg border border-border bg-card overflow-hidden shadow-none">
+      {/* Users Table - Desktop View */}
+      <div className="hidden md:block rounded-lg border border-border bg-card overflow-x-auto shadow-none">
         <Table>
           <TableHeader className="bg-muted/40">
             <TableRow>
@@ -227,6 +227,66 @@ export function TokenManager({ users, currentAdminId }: TokenManagerProps) {
             )}
           </TableBody>
         </Table>
+      </div>
+
+      {/* Users Cards - Mobile View */}
+      <div className="grid gap-4 md:hidden">
+        {filteredUsers.length === 0 ? (
+          <div className="text-center py-8 rounded-lg border border-border bg-card text-muted-foreground text-sm">
+            No users found matching filters.
+          </div>
+        ) : (
+          filteredUsers.map((user) => (
+            <div 
+              key={user.id} 
+              className="rounded-lg border border-border bg-card p-5 space-y-4 shadow-none"
+            >
+              <div className="flex items-start justify-between gap-2">
+                <div className="flex flex-col text-left">
+                  <span className="font-semibold text-sm text-foreground">
+                    {user.full_name || 'No Name Provided'}
+                  </span>
+                  <span className="text-xs text-muted-foreground">
+                    {user.email}
+                  </span>
+                </div>
+                <span className={cn(
+                  "inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold capitalize shrink-0",
+                  user.role === 'admin'
+                    ? "bg-[#ff2067]/10 text-[#cc0044] border-[#ff2067]/20"
+                    : user.role === 'seller'
+                    ? "bg-fin-orange/10 text-fin-orange border-fin-orange/20"
+                    : "bg-muted text-muted-foreground border-border"
+                )}>
+                  {user.role}
+                </span>
+              </div>
+
+              <div className="border-t border-border/40 pt-3 flex items-center justify-between gap-4">
+                <div className="flex flex-col text-left">
+                  <span className="text-[9px] text-muted-foreground uppercase font-bold tracking-wider mb-0.5">Token Balance</span>
+                  {user.role === 'seller' ? (
+                    <TokenBadge tokens={user.tokens} />
+                  ) : (
+                    <span className="text-xs text-muted-foreground/60 italic">N/A (Non-seller)</span>
+                  )}
+                </div>
+
+                {user.role === 'seller' && (
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    onClick={() => handleOpenDialog(user)}
+                    className="cursor-pointer gap-1.5 h-9 text-xs"
+                  >
+                    <UserCog className="h-4 w-4" />
+                    Manage Credits
+                  </Button>
+                )}
+              </div>
+            </div>
+          ))
+        )}
       </div>
 
       {/* Adjust Tokens Dialog */}
